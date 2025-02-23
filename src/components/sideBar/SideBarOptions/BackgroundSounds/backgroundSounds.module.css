@@ -1,0 +1,118 @@
+.appContainer {
+    width: 100%;
+    height: auto;
+}
+
+.container {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
+
+.music {
+    width: 100%;
+}
+
+div audio {
+    border-radius: 0px;
+}
+
+.soundsImg {
+    width: 20px;
+    height: 20px;
+}
+
+input[type="range"] {
+    width: 80%;
+    height: 5px;
+}
+
+.trackDuration{
+    display: flex;
+    justify-content: center;
+    width: 15%;
+
+
+}
+
+.inputDiv {
+    width: 85%;
+}
+
+.inputDiv * {
+    position: relative;
+    transform: translateY(-50%);
+
+}
+
+h4 {
+    text-align: left;
+}
+
+h5 {
+    text-align: left;
+    margin-top: 5%;
+}
+
+.music {
+    display: flex;
+    flex-direction: column;
+}
+
+.pausePlay {
+    width: 25px;
+}
+
+.audioOptions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5%;
+    width: 100%;
+}
+
+.aditionalOptions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 18%;
+    margin-right: 10%;
+}
+
+.volumenStyle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 3%;
+    margin-right: 3%;
+    transform: translateY(-25%);
+
+}
+
+.volumenStyle input {
+    width: 70%;
+}
+
+.volumenIcon {
+    max-width: 20px;
+    max-height: 20px;
+}
+
+@media (max-width: 992px) {
+  
+    .audioOptions {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 5%;
+        width: 100%;
+    }
+
+    .music {
+        width: 100%;
+    }
+  
+  }

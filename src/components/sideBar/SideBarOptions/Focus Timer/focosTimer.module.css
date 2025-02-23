@@ -1,0 +1,22 @@
+.text {
+    text-align: left;
+}
+
+
+.bulletedList {
+    list-style-type: disc; 
+    padding-left: 10px; 
+}
+
+.bulletedList li {
+    margin-bottom: 2px; 
+    padding: 1%;
+}
+
+.bulletedList li:hover {
+   cursor: default;
+}
+
+p {
+    
+}
