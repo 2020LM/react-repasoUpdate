@@ -1,0 +1,51 @@
+:root {
+    --white: white;
+}
+
+
+.buttons {
+    display:flex;
+    flex-direction: row;
+    margin: 20px;
+    background-color: transparent;
+}
+
+
+
+button {
+    margin: 20px;
+    min-width: 50px;
+}
+
+.menuHamburguesa {
+    position: fixed;
+    right: 7.5%;
+    top: 7.5%;
+    z-index: 100;
+    width: 25px;
+    height: 25px;
+
+}
+
+img {
+    cursor: pointer;
+}
+
+.colorfont {
+    color: var(--white);
+}
+
+
+@media (max-width: 992px) {
+    .menuHamburguesa {
+        right: 12%; 
+    }
+
+  }
+
+  @media (max-width: 525px) {
+    .menuHamburguesa {
+        right: 10%; 
+    
+    }
+  }

@@ -1,0 +1,19 @@
+.text {
+  text-align: left;
+  max-width: 90%;
+  padding-left: 2%;
+}
+
+.bulletedList {
+  list-style-type: disc;
+  padding-left: 10px;
+}
+
+.bulletedList li {
+  margin-bottom: 2px;
+  padding: 1%;
+}
+
+.bulletedList li:hover {
+  cursor: default;
+}
