@@ -1,0 +1,35 @@
+.languages li {
+    list-style: none;
+    padding: 0;
+    margin-left: 0;
+}
+
+.check img {
+    max-width: 24px;
+    max-height: 24px;
+}
+
+.check {
+    position: absolute;
+    right: 7.5%;
+    transform: translateY(-10%);
+}
+
+.languages {
+    margin-top: 10%;
+}
+
+.check img {
+    max-width: 24px;
+    max-height: 24px;
+}
+
+.check {
+    position: absolute;
+    right: 7.5%;
+    transform: translateY(-10%);
+}
+
+.fixxingItemList {
+    margin-left: 0px;
+}

@@ -1,0 +1,18 @@
+
+.optionIcon {
+    max-width: 24px ;
+    max-height: 24px;
+}
+
+
+.display li {
+    display: flex;
+    justify-content: left;
+
+}
+
+.display li * {
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
