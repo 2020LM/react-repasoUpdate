@@ -2,8 +2,11 @@
 import React, { useEffect } from "react";
 
 // Architecture & Global State Imports
-import { useLanguage, useCurrentLanguage } from "../../../../context/context";
-import { useTranslator } from "../../../translator/translator";
+
+import { translator } from "../../../translator/translator";
+import { useDispatch, useSelector } from "react-redux";
+import { selectLanguages, selectCurrentLanguage } from "../../../../store/slices/Languages/LanguageSlice.js";
+import { setLanguages as setLanguageAction, setCurrentLanguage as setCurrentLanguageAction} from "../../../../store/slices/Languages/LanguageSlice.js";
 
 // Internal Tools & Utilities
 import storage from "../../../../lib/storage";
@@ -13,36 +16,44 @@ import cheque from "../../../../assets/img/icons/cheque.webp";
 import classes from "./language.module.css";
 
 export const LanguagueOptions = () => {
-  const [languages, setLanguages] = useLanguage();
-  const [currentLanguage, setCurrentLanguage] = useCurrentLanguage();
+  const languages = useSelector(selectLanguages);
+  const currentLanguage = useSelector(selectCurrentLanguage);
+  const dispatch = useDispatch();
 
-  const updateLanguagues = (index, attribute, value) => {
-    const updatedLanguages = [...languages];
-    if (attribute == "name") {
-      languages[index].id = value;
-    } else if (attribute == "selected") {
-      languages[index].selected = value;
-    }
+  const setLanguages = (languages) => {
+    dispatch(setLanguageAction(languages));
+  }
 
-    setLanguages(updatedLanguages);
+  const setCurrentLanguage = (language) => {
+    dispatch(setCurrentLanguageAction(language));
   };
 
   const setLanguage = (index) => {
-    if (currentLanguage.id - 1 != index) {
-      updateLanguagues(currentLanguage.id - 1, "selected", "false");
-      updateLanguagues(index, "selected", "true");
-      setCurrentLanguage(languages[index]);
-      storage.set("language", languages[index]);
-    }
+    const newLanguage = languages[index];
+
+    setCurrentLanguage(newLanguage);
+    const updatedLanguagues = languages.map((item) => ({
+      ...item,
+      selected: item.id === newLanguage.id ? "true" : "false",
+    }));
+
+    setLanguages(updatedLanguagues);
+    storage.set("language", updatedLanguagues[index]);
   };
 
   useEffect(() => {
-    updateLanguagues(currentLanguage.id - 1, "selected", "true");
+    const storedLanguageName = storage.get("language");
+    if (storedLanguageName !== undefined && storedLanguageName !== null) {
+      const storedLanguageIndex = languages.findIndex(item => item.name === storedLanguageName);
+      if (storedLanguageIndex !== -1) {
+        setLanguage(storedLanguageIndex);
+      }
+    }
   }, []);
 
   return (
     <>
-      <h3>{useTranslator(currentLanguage.name, "Languages")}</h3>
+      <h3>{translator(currentLanguage.name, "Languages")}</h3>
       <ul className={`${classes.languages}`}>
         {languages.map((item, index) => {
           return (
@@ -54,7 +65,7 @@ export const LanguagueOptions = () => {
               }}
             >
               <a>{item.name}</a>
-              {item.selected == "true" && (
+              {item.id == currentLanguage.id && (
                 <span className={classes.check}>
                   <img src={cheque}></img>
                 </span>

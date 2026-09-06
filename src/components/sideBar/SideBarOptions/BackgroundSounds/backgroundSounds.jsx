@@ -1,14 +1,11 @@
 // Third-Party & Ecosystem Imports
-import React, { Fragment, useRef } from "react";
+import { useSelector } from "react-redux";
 
 // Architecture & Global State Imports
-import {
-  useVolumeMusic,
-  useMutedMusic,
-  useCurrentLanguage,
-} from "../../../../context/context";
+import { selectCurrentLanguage } from "../../../../store/slices/Languages/LanguageSlice.js";
 import { SongByType } from "./songByType";
-import { useTranslator } from "../../../translator/translator";
+import BackgroundSoundConfiguration from "./BackgroundSoundConfiguration/BackgroundSoundConfiguration";
+import { translator } from "../../../translator/translator";
 import {
   NATURE,
   ANIME,
@@ -19,67 +16,31 @@ import {
   INDIA,
 } from "../../../../General/generalVariables";
 
-// Internal Tools & Utilities
-import volumeIcon from "../../../../assets/img/icons/volumen_13_11zon_128_11zon.webp";
-import muted from "../../../../assets/img/icons/mute.webp";
-
 // Component Styles
 import classes from "./backgroundSounds.module.css";
 
 export const BackgroundSounds = () => {
-  const [volumen, setVolumen] = useVolumeMusic();
-  const volumenBar = useRef(null);
-  const [mute, setMute] = useMutedMusic();
-  const [currentLanguage, setCurrentLanguage] = useCurrentLanguage();
+
+  const currentLanguage = useSelector(selectCurrentLanguage);
 
   return (
     <>
-      <h3>{useTranslator(currentLanguage.name, "Sounds")}</h3>
-      <h4>{useTranslator(currentLanguage.name, NATURE)}</h4>
-      <SongByType type={NATURE} volume={volumen} mute={mute} />
-      <h4>{useTranslator(currentLanguage.name, ANIME)}</h4>
-      <SongByType type={ANIME} volume={volumen} mute={mute} />
-      <h4>{useTranslator(currentLanguage.name, CAFE)}</h4>
-      <SongByType type={CAFE} volume={volumen} mute={mute} />
-      <h4>{useTranslator(currentLanguage.name, JAZZ)}</h4>
-      <SongByType type={JAZZ} volume={volumen} mute={mute} />
-      <h4>{useTranslator(currentLanguage.name, CLASSICAL)}</h4>
-      <SongByType type={CLASSICAL} volume={volumen} mute={mute} />
-      <h4>{useTranslator(currentLanguage.name, RUNNING)}</h4>
-      <SongByType type={RUNNING} volume={volumen} mute={mute} />
-      <h4>{useTranslator(currentLanguage.name, INDIA)}</h4>
-      <SongByType type={INDIA} volume={volumen} mute={mute} />
-      <div className={classes.volumenStyle}>
-        {mute ? (
-          <span>
-            {" "}
-            <img
-              className={classes.volumenIcon}
-              src={muted}
-              onClick={() => setMute(false)}
-            ></img>
-          </span>
-        ) : (
-          <span>
-            {" "}
-            <img
-              className={classes.volumenIcon}
-              src={volumeIcon}
-              onClick={() => setMute(true)}
-            ></img>
-          </span>
-        )}
-
-        <input
-          ref={volumenBar}
-          type="range"
-          min="0"
-          max="100"
-          value={volumen}
-          onChange={() => setVolumen(volumenBar.current.value)}
-        />
-        <span>{volumen}</span>
-      </div>
+      <h3>{translator(currentLanguage.name, "Sounds")}</h3>
+      <h4>{translator(currentLanguage.name, NATURE)}</h4>
+      <SongByType type={NATURE} />
+      <h4>{translator(currentLanguage.name, ANIME)}</h4>
+      <SongByType type={ANIME} />
+      <h4>{translator(currentLanguage.name, CAFE)}</h4>
+      <SongByType type={CAFE} />
+      <h4>{translator(currentLanguage.name, JAZZ)}</h4>
+      <SongByType type={JAZZ} />
+      <h4>{translator(currentLanguage.name, CLASSICAL)}</h4>
+      <SongByType type={CLASSICAL} />
+      <h4>{translator(currentLanguage.name, RUNNING)}</h4>
+      <SongByType type={RUNNING} />
+      <h4>{translator(currentLanguage.name, INDIA)}</h4>
+      <SongByType type={INDIA} />
+      <BackgroundSoundConfiguration />
     </>
   );
 };

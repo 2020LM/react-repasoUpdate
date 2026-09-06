@@ -6,19 +6,29 @@ import { createLogger } from 'redux-logger';
 import backgroundReducer from './slices/Background/BackgroundSlice.js';
 import sideBarReducer from './slices/SideBar/SideBar.js';
 import alarmReducer from './slices/Alarm/AlarmSlice.js';
-
+import languageReducer from './slices/Languages/LanguageSlice.js';
+import timeReducer from './slices/Time/TimeSlice.js';
+import soundsReducer from './slices/Sounds/SoundsSlice.js';
+/*
 const logger = createLogger({
   collapsed: true,
 });
-
+*/
+/* */
 export const store = configureStore({
   reducer: {
     background: backgroundReducer,
     sideBar: sideBarReducer,
     alarm: alarmReducer,
+    language: languageReducer,
+    time: timeReducer,
+    sounds: soundsReducer,
   },
+  /*
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(logger),
+  */
 });
+
 
 export default store

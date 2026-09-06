@@ -29,7 +29,6 @@ const song1 = {
   type: "Nature",
   repeat: "true",
   currentTime: 0,
-  audio: new Audio(src1),
 };
 
 const song2 = {
@@ -40,7 +39,6 @@ const song2 = {
   type: "Nature",
   repeat: "true",
   currentTime: 0,
-  audio: new Audio(src2),
 };
 
 const song3 = {
@@ -51,7 +49,6 @@ const song3 = {
   type: "Nature",
   repeat: "true",
   currentTime: 0,
-  audio: new Audio(src3),
 };
 
 const song4 = {
@@ -62,7 +59,6 @@ const song4 = {
   type: "Cafe",
   repeat: "true",
   currentTime: 0,
-  audio: new Audio(src4),
 };
 
 const song5 = {
@@ -73,7 +69,6 @@ const song5 = {
   type: "Cafe",
   repeat: "true",
   currentTime: 0,
-  audio: new Audio(src5),
 };
 
 const song6 = {
@@ -84,7 +79,6 @@ const song6 = {
   type: "Cafe",
   repeat: "true",
   currentTime: 0,
-  audio: new Audio(src6),
 };
 
 const song7 = {
@@ -95,7 +89,6 @@ const song7 = {
   type: "Jazz",
   repeat: "true",
   currentTime: 0,
-  audio: new Audio(src7),
 };
 
 const song8 = {
@@ -106,7 +99,6 @@ const song8 = {
   type: "Jazz",
   repeat: "true",
   currentTime: 0,
-  audio: new Audio(src8),
 };
 
 const song9 = {
@@ -117,7 +109,6 @@ const song9 = {
   type: "Jazz",
   repeat: "true",
   currentTime: 0,
-  audio: new Audio(src9),
 };
 
 const song10 = {
@@ -128,7 +119,6 @@ const song10 = {
   type: "Classical",
   repeat: "true",
   currentTime: 0,
-  audio: new Audio(src10),
 };
 
 const song11 = {
@@ -139,7 +129,6 @@ const song11 = {
   type: "Classical",
   repeat: "true",
   currentTime: 0,
-  audio: new Audio(src11),
 };
 
 const song12 = {
@@ -150,117 +139,106 @@ const song12 = {
   type: "Classical",
   repeat: "true",
   currentTime: 0,
-  audio: new Audio(src12),
 };
 
 const song13 = {
   id: 13,
   isPlaying: "false",
-  song: src12,
+  song: src13,
   duration: 153,
   type: "Nature",
   repeat: "true",
   currentTime: 0,
-  audio: new Audio(src13),
 };
 
 const song14 = {
   id: 14,
   isPlaying: "false",
-  song: src12,
+  song: src14,
   duration: 146,
   type: "Running",
   repeat: "true",
   currentTime: 0,
-  audio: new Audio(src14),
 };
 
 const song15 = {
   id: 15,
   isPlaying: "false",
-  song: src12,
+  song: src15,
   duration: 122,
   type: "Running",
   repeat: "true",
   currentTime: 0,
-  audio: new Audio(src15),
 };
 
 const song16 = {
   id: 16,
   isPlaying: "false",
-  song: src12,
+  song: src16,
   duration: 95,
   type: "Running",
   repeat: "true",
   currentTime: 0,
-  audio: new Audio(src16),
 };
 
 const song17 = {
   id: 17,
   isPlaying: "false",
-  song: src12,
+  song: src17,
   duration: 144,
   type: "Anime",
   repeat: "true",
   currentTime: 0,
-  audio: new Audio(src17),
 };
 
 const song18 = {
   id: 18,
   isPlaying: "false",
-  song: src12,
+  song: src18,
   duration: 79,
   type: "Anime",
   repeat: "true",
   currentTime: 0,
-  audio: new Audio(src18),
 };
 
 const song19 = {
   id: 19,
   isPlaying: "false",
-  song: src12,
+  song: src19,
   duration: 171,
   type: "Anime",
   repeat: "true",
   currentTime: 0,
-  audio: new Audio(src19),
 };
 
 const song20 = {
   id: 20,
   isPlaying: "false",
-  song: src12,
+  song: src20,
   duration: 127,
   type: "India",
   repeat: "true",
   currentTime: 0,
-  audio: new Audio(src20),
 };
 
 const song21 = {
   id: 21,
   isPlaying: "false",
-  song: src12,
+  song: src21,
   duration: 144,
   type: "India",
   repeat: "true",
   currentTime: 0,
-  audio: new Audio(src21),
 };
 
 const song22 = {
   id: 22,
   isPlaying: "false",
-  song: src12,
+  song: src22,
   duration: 144,
   type: "India",
   repeat: "true",
   currentTime: 0,
-  audio: new Audio(src22),
 };
 
 export const BackgroundMusic = [

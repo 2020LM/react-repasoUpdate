@@ -11,8 +11,8 @@ import {
   setMutedAlarm,
 } from "../../../../../store/slices/Alarm/AlarmSlice.js";
 import storage from "../../../../../lib/storage";
-import { useCurrentLanguage } from "../../../../../context/context";
-import { useTranslator } from "../../../../translator/translator";
+import { selectCurrentLanguage } from "../../../../../store/slices/Languages/LanguageSlice.js";
+import { translator } from "../../../../translator/translator";
 
 import classes from "../alarmSounds.module.css";
 
@@ -21,7 +21,7 @@ const AlarmConfiguration = () => {
   const mutedAlarm = useSelector(selectMutedAlarm);
   const dispatch = useDispatch();
   const alarmVolumeBar = useRef(null);
-  const [currentLanguage] = useCurrentLanguage();
+  const currentLanguage = useSelector(selectCurrentLanguage);
 
   const updateMute = (value) => {
     dispatch(setMutedAlarm(value));
@@ -37,7 +37,7 @@ const AlarmConfiguration = () => {
     <>
       <ul className={classes.alarmSound}>
         <li onClick={() => updateMute(!mutedAlarm)}>
-          <a>{useTranslator(currentLanguage.name, "Silence")}</a>
+          <a>{translator(currentLanguage.name, "Silence")}</a>
           {mutedAlarm && (
             <span className={classes.check}>
               <img src={cheque}></img>

@@ -12,7 +12,7 @@ import { FocusTimer } from "./SideBarOptions/Focus Timer/focusTimer";
 // Component Styles
 import classes from "./sideBar.module.css";
 
-export const SideBarContent = ({ playAlarm }) => {
+export const SideBarContent = () => {
   return (
     <>
       <div className="position-sticky">
@@ -34,7 +34,7 @@ export const SideBarContent = ({ playAlarm }) => {
                   <Backgrounds />
                 </div>
                 <div className="carousel-item">
-                  <AlarmSound playAlarm={playAlarm} />
+                  <AlarmSound />
                 </div>
                 <div className="carousel-item">
                   <BackgroundSounds />

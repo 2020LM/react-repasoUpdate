@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Blurhash } from "react-blurhash";
 
-import { useTranslator } from "../../../translator/translator";
+import { translator } from "../../../translator/translator";
 
 import classes from "./backgrounds.module.css";
 
@@ -18,8 +18,8 @@ export const BackgroundImage = ({
   const imageSrc = isWide ? item.src : item.src2;
   const altText =
     item.alt != undefined
-      ? useTranslator(currentLanguage.name, item.alt)
-      : useTranslator(currentLanguage.name, type);
+      ? translator(currentLanguage.name, item.alt)
+      : translator(currentLanguage.name, type);
 
   return (
     <div key={index} className={`${classes.fixxingMargins}`}>

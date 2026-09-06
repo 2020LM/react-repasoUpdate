@@ -17,73 +17,61 @@ import  sound12  from "../../../../assets/audio/AlarmSounds/12.opus"
 const alarm1 = {
     id: 1,
     sound: sound1,
-    selected: "false"
 }
 
 const alarm2 = {
     id: 2,
     sound: sound2,
-    selected: "false"
 }
 const alarm3 = {
     id: 3,
     sound: sound3,
-    selected: "false"
 }
 
 const alarm4 = {
     id: 4,
     sound: sound4,
-    selected: "false"
 }
 
 const alarm5 = {
     id: 5,
     sound: sound5,
-    selected: "false"
 }
 
 const alarm6 = {
     id: 6,
     sound: sound6,
-    selected: "false"
 }
 
 const alarm7 = {
     id: 7,
     sound: sound7,
-    selected: "false"
 }
 
 const alarm8 = {
     id: 8,
     sound: sound8,
-    selected: "false"
 }
 
 
 const alarm9 = {
     id: 9,
     sound: sound9,
-    selected: "false"
 }
 
 const alarm10 = {
     id: 10,
     sound: sound10,
-    selected: "false"
 }
 
 const alarm11 = {
     id: 11,
     sound: sound11,
-    selected: "false"
 }
 
 const alarm12 = {
     id: 12,
     sound: sound12,
-    selected: "false"
 }
 
 

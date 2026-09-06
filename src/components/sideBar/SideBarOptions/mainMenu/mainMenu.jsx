@@ -1,9 +1,10 @@
 // Third-Party & Ecosystem Imports
 import React from "react";
+import { useSelector } from "react-redux";
 
 // Architecture & Global State Imports
-import { useCurrentLanguage } from "../../../../context/context";
-import { useTranslator } from "../../../translator/translator";
+import { translator } from "../../../translator/translator";
+import { selectCurrentLanguage } from "../../../../store/slices/Languages/LanguageSlice.js";
 import { setRightArrow as setRightArrowAction } from "../../../../store/slices/SideBar/SideBar.js";
 import { useDispatch } from "react-redux";
 
@@ -18,7 +19,7 @@ import focusTimerIcon from "../../../../../favicons/favIcons.webp";
 import classes from "./mainMenu.module.css";
 
 export const MainMenu = () => {
-  const [currentLanguage, setCurrentLanguage] = useCurrentLanguage();
+  const currentLanguage = useSelector(selectCurrentLanguage);
   
   const dispatch = useDispatch();
 
@@ -37,7 +38,7 @@ export const MainMenu = () => {
         <a>
           <span href="#carouselExampleControls" role="button" data-slide="1">
             <img src={backgroundIcon} className={classes.optionIcon}></img>{" "}
-            {useTranslator(currentLanguage.name, "Change Background")}
+            {translator(currentLanguage.name, "Change Background")}
           </span>
         </a>
       </li>
@@ -50,7 +51,7 @@ export const MainMenu = () => {
         <a>
           <span href="#carouselExampleControls" role="button" data-slide="2">
             <img src={bell} className={classes.optionIcon}></img>
-            {useTranslator(currentLanguage.name, "Set Alarm")}
+            {translator(currentLanguage.name, "Set Alarm")}
           </span>
         </a>
       </li>
@@ -63,7 +64,7 @@ export const MainMenu = () => {
         <a>
           <span href="#carouselExampleControls" role="button" data-slide="3">
             <img src={soundsIcon} className={classes.optionIcon}></img>{" "}
-            {useTranslator(currentLanguage.name, "Set Music")}{" "}
+            {translator(currentLanguage.name, "Set Music")}{" "}
           </span>
         </a>
       </li>
@@ -77,7 +78,7 @@ export const MainMenu = () => {
         <a>
           <span href="#carouselExampleControls" role="button" data-slide="4">
             <img src={languagesIcon} className={classes.optionIcon}></img>{" "}
-            {useTranslator(currentLanguage.name, "Set Language")}
+            {translator(currentLanguage.name, "Set Language")}
           </span>
         </a>
       </li>
@@ -90,7 +91,7 @@ export const MainMenu = () => {
         <a>
           <span href="#carouselExampleControls" role="button" data-slide="5">
             <img src={focusTimerIcon} className={classes.optionIcon}></img>{" "}
-            {useTranslator(currentLanguage.name, "Focus Timer")}
+            {translator(currentLanguage.name, "Focus Timer")}
           </span>
         </a>
       </li>

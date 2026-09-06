@@ -23,6 +23,4 @@ const language4 = {
     selected: "false"
 }
 
-export const LanguageData = () => {
-    return[ language1 , language2 , language3 , language4 ]
-}
+export const LanguageData = [ language1 , language2 , language3 , language4 ]

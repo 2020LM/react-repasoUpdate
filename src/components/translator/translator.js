@@ -1,5 +1,5 @@
 
-export const useTranslator = (language, word) => {
+export const translator = (language, word) => {
   const translations = {
     Español: {
       Timer: "Temporizador",

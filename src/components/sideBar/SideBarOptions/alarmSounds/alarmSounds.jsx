@@ -3,9 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // Architecture & Global State Imports
-import {
-  useCurrentLanguage,
-} from "../../../../context/context";
+import { selectCurrentLanguage } from "../../../../store/slices/Languages/LanguageSlice.js";
 import { selectAlarmSounds, selectCurrentAlarm
  } from "../../../../store/slices/Alarm/AlarmSlice.js";
 import { setCurrentAlarm as setCurrentAlarmAction
@@ -13,7 +11,7 @@ import { setCurrentAlarm as setCurrentAlarmAction
 import { setAlarmSounds as setAlarmSoundsAction }
           from "../../../../store/slices/Alarm/AlarmSlice.js";
 
-import { useTranslator } from "../../../translator/translator";
+import { translator } from "../../../translator/translator";
 import AlarmConfiguration from "./AlarmConfiguration/AlarmConfiguration";
 
 // Internal Tools & Utilities
@@ -23,11 +21,11 @@ import cheque from "../../../../assets/img/icons/cheque.webp";
 // Component Styles
 import classes from "./alarmSounds.module.css";
 
-export const AlarmSound = ({ playAlarm }) => {
+export const AlarmSound = () => {
   const alarmSounds = useSelector(selectAlarmSounds);
   const currentAlarm = useSelector(selectCurrentAlarm);
   const dispatch = useDispatch();
-  const [currentLanguage] = useCurrentLanguage();
+  const currentLanguage = useSelector(selectCurrentLanguage);
 
   const setAlarmSounds = (value) => {
     dispatch(setAlarmSoundsAction(value));
@@ -43,12 +41,6 @@ export const AlarmSound = ({ playAlarm }) => {
     }
 
     const selectedAlarm = alarmSounds[index];
-    const updatedAlarmSounds = alarmSounds.map((item) => ({
-      ...item,
-      selected: item.id === selectedAlarm.id ? "true" : "false",
-    }));
-
-    setAlarmSounds(updatedAlarmSounds);
     setCurrentAlarm(selectedAlarm);
     storage.set("currentAlarm", index);
 
@@ -56,7 +48,7 @@ export const AlarmSound = ({ playAlarm }) => {
 
   return (
     <>
-      <h3>{useTranslator(currentLanguage.name, "Alarms")}</h3>
+      <h3>{translator(currentLanguage.name, "Alarms")}</h3>
       <ul className={`${classes.alarmSound}`}>
         {alarmSounds.map((item, index) => {
           return (
@@ -67,7 +59,7 @@ export const AlarmSound = ({ playAlarm }) => {
               }}
             >
               <a>
-                {useTranslator(currentLanguage.name, `Alarm`)} {item.id}
+                {translator(currentLanguage.name, `Alarm`)} {item.id}
               </a>
               {item.id == currentAlarm.id && (
                 <span className={classes.check}>

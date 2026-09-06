@@ -1,10 +1,19 @@
 // Third-Party & Ecosystem Imports
 import React, { useState } from "react";
 import { useTransition, animated } from "react-spring";
+import { useSelector , useDispatch } from "react-redux";
+
 
 // Architecture & Global State Imports
-import { useSecondStart, useTimeSetByUser, useFixingTime, useCurrentLanguage, useSeconds, useTriggeredFixingTime, } from "../../context/context";
-import { useTranslator } from "../translator/translator";
+import { selectFixingTimer, selectTriggeredFixingTime } from "../../store/slices/Time/TimeSlice.js";
+import { setSecondsRestart as setSecondsRestartAction, 
+         setInitialSeconds as setInitialSecondsAction,
+         setTimeSetByUser as setTimeSetByUserAction, 
+         setFixingTimer as setFixingTimerAction, 
+         setTriggeredFixingTime as setTriggeredFixingTimeAction
+         } from "../../store/slices/Time/TimeSlice.js";
+import { translator } from "../translator/translator";
+import { selectCurrentLanguage } from "../../store/slices/Languages/LanguageSlice.js";
 
 // Internal Tools & Utilities
 import storage from "../../lib/storage";
@@ -17,17 +26,24 @@ import closeRed from "../../assets/img/icons/cerrar_rojo__2_11zon_106_11zon-remo
 import classes from "./ButtonModal.module.css";
 
 export const ButtonModal = () => {
-  const [fixingTimer, setFixingTimer] = useFixingTime();
+
+  const currentLanguage = useSelector(selectCurrentLanguage);
+  const triggeredFixingTime = useSelector(selectTriggeredFixingTime);
+  const fixingTimer = useSelector(selectFixingTimer);
+
+  const dispatch = useDispatch();
+
+  const setSecondsRestart = (value) => dispatch(setSecondsRestartAction(value));
+  const setSeconds = (value) => dispatch(setInitialSecondsAction(value));
+  const setTimeSetByUser = (value) => dispatch(setTimeSetByUserAction(value));
+  const setFixingTimer = (value) => dispatch(setFixingTimerAction(value));
+  const setTriggeredFixingTime = (value) => dispatch(setTriggeredFixingTimeAction(value));
+
   const [value1, setValue1] = useState("3");
   const [value2, setValue2] = useState("0");
   const [value3, setValue3] = useState("0");
   const [value4, setValue4] = useState("0");
-  const [secondsRestart, setSecondsRestart] = useSecondStart();
-  const [seconds, setSeconds] = useSeconds();
-  const [timeSetByUser, setTimeSetByUser] = useTimeSetByUser();
-  const [currentLanguage, setCurrentLanguage] = useCurrentLanguage();
-  const [triggeredFixingTime, setTriggeredFixingTime] =
-    useTriggeredFixingTime();
+
 
   const setTimer = () => {
     const minutesValue = parseInt(value1.toString() + value2.toString()) * 60;
@@ -131,7 +147,7 @@ export const ButtonModal = () => {
                   className={`${classes.modalContent}`}
                 >
                   <h2 className={`${classes.text}`}>
-                    {useTranslator(currentLanguage.name, "Set Time")}
+                    {translator(currentLanguage.name, "Set Time")}
                   </h2>
                   <span
                     className={`${classes.closeModal}`}
@@ -221,7 +237,7 @@ export const ButtonModal = () => {
                   </div>
                   <button onClick={setTimer}>
                     {" "}
-                    {useTranslator(currentLanguage.name, "Accept")}{" "}
+                    {translator(currentLanguage.name, "Accept")}{" "}
                   </button>
                 </animated.div>
               ) : (

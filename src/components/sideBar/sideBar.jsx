@@ -51,7 +51,7 @@ const settingModalOpacity = () => {
   return [1, 1];
 };
 
-export const SideBard = ({ playAlarm }) => {
+export const SideBard = () => {
   const visibleSideBar = useSelector(selectVisibleSideBar);
   const rightArrow = useSelector(selectRightArrow);
 
@@ -147,10 +147,10 @@ export const SideBard = ({ playAlarm }) => {
 
                 {window.innerWidth >= bigSize && (
                   <Scrollbars style={{ width: "100%", height: "85vh" }}>
-                    <SideBarContent playAlarm={playAlarm} />
+                    <SideBarContent />
                   </Scrollbars>
                 )}
-                {window.innerWidth < bigSize && <SideBarContent playAlarm={playAlarm} />}
+                {window.innerWidth < bigSize && <SideBarContent />}
               </animated.nav>
             ) : (
               ""

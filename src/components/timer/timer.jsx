@@ -1,17 +1,21 @@
 // Third-Party & Ecosystem Imports
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux"
 import { useTimer } from "react-timer-hook";
 
 // Architecture & Global State Imports
 import {
-  useCurrentLanguage,
-  useSeconds,
-  useFixingTime,
-  useSecondStart,
-  useTriggeredFixingTime,
-} from "../../context/context";
+  selectInitialSeconds,
+  selectSecondsRestart,
+  selectTriggeredFixingTime,
+} from "../../store/slices/Time/TimeSlice.js";
+import {
+  setFixingTimer as setFixingTimerAction,
+  setTimerValues as setTimerValuesAction,
+} from "../../store/slices/Time/TimeSlice.js";
+import { selectCurrentLanguage } from "../../store/slices/Languages/LanguageSlice.js";
 import { ButtonModal } from "../ButtonModal/ButtonModal";
-import { useTranslator } from "../translator/translator";
+import { translator } from "../translator/translator";
 
 // Component Styles
 import classes from "./timer.module.css";
@@ -20,7 +24,7 @@ const bigSize = 992;
 const mediumSize = 525;
 const smallSize = 400;
 
-export const MyTimer = ({ expiryTimestamp, playAlarm }) => {
+export const MyTimer = ({ expiryTimestamp }) => {
   const styleButtons = () => {
     if (window.innerWidth >= mediumSize) {
       return "";
@@ -35,24 +39,16 @@ export const MyTimer = ({ expiryTimestamp, playAlarm }) => {
     return "";
   };
 
-  const styleTexting = () => {
-    if (
-      window.innerWidth >= mediumSize &&
-      window.innerWidth >= window.innerHeight * 1.05 &&
-      window.innerWidth <= bigSize
-    ) {
-      return `${classes.fixxingHorizontalSize}`;
-    }
-    return "";
-  };
 
+  const initialSeconds = useSelector(selectInitialSeconds);
+  const secondsRestart = useSelector(selectSecondsRestart);
+  const triggeredFixingTime = useSelector(selectTriggeredFixingTime);
+  const currentLanguage = useSelector(selectCurrentLanguage);
 
-  const [initialSeconds, setInitialSeconds] = useSeconds();
-  const [currentLanguage, setCurrentLanguage] = useCurrentLanguage();
-  const [fixingTimer, setFixingTimer] = useFixingTime();
-  const [secondsRestart, setSecondsRestart] = useSecondStart();
-  const [triggeredFixingTime, setTriggeredFixingTime] =
-    useTriggeredFixingTime();
+  const dispatch = useDispatch();
+  const setFixingTimer = (value) => dispatch(setFixingTimerAction(value));
+  const setTimerValues = (value) => dispatch(setTimerValuesAction(value));
+
   const [traditionalButton, setTraditionalButton] = useState(styleButtons());
   const [fixxingTimer, setFixxingTimer] = useState(styleFixxingButtons());
 
@@ -69,6 +65,10 @@ export const MyTimer = ({ expiryTimestamp, playAlarm }) => {
     expiryTimestamp,
     onExpire: () => console.warn("onExpire called"),
   });
+
+  useEffect(() => {
+    setTimerValues({ totalSeconds, seconds, minutes });
+  }, [totalSeconds, seconds, minutes]);
 
   const reestartTimer = () => {
     const time = new Date();
@@ -119,7 +119,6 @@ export const MyTimer = ({ expiryTimestamp, playAlarm }) => {
     if (totalSeconds == 0 && minutes == 0 && seconds == 0) {
       document.title =
         "Focus Timer | Boost Concentration & Productivity with Custom Intervals";
-      playAlarm();
     }
   }, [totalSeconds]);
 
@@ -130,7 +129,7 @@ export const MyTimer = ({ expiryTimestamp, playAlarm }) => {
   return (
     <div className={`${classes.main}`}>
       <div className={`${fixxingTimer}`}>
-        <h1>{useTranslator(currentLanguage.name, "Focus Timer")}</h1>
+        <h1>{translator(currentLanguage.name, "Focus Timer")}</h1>
         <div className={`${classes.timer}`}>
           <span>{timeFormat()}</span>:
           <span>{seconds < 10 ? `0${seconds}` : seconds}</span>
@@ -140,7 +139,7 @@ export const MyTimer = ({ expiryTimestamp, playAlarm }) => {
 
       {totalSeconds == 0 && (
         <h2 className={`${(classes.colorfont, classes.done)}`}>
-          {useTranslator(currentLanguage.name, "Done!")}
+          {translator(currentLanguage.name, "Done!")}
         </h2>
       )}
       <div className={`${classes.buttons} ${traditionalButton}`}>
@@ -149,7 +148,7 @@ export const MyTimer = ({ expiryTimestamp, playAlarm }) => {
           onClick={() => setFixingTimer(true)}
           className={"btn btn-outline-light"}
         >
-          {useTranslator(currentLanguage.name, "Set Time")}
+          {translator(currentLanguage.name, "Set Time")}
         </button>
         {totalSeconds > 0 && (
           <div>
@@ -159,7 +158,7 @@ export const MyTimer = ({ expiryTimestamp, playAlarm }) => {
                 type="button"
                 className={"btn btn-outline-light"}
               >
-                {useTranslator(currentLanguage.name, "Start Timer")}
+                {translator(currentLanguage.name, "Start Timer")}
               </button>
             )}
             {isRunning && (
@@ -168,7 +167,7 @@ export const MyTimer = ({ expiryTimestamp, playAlarm }) => {
                 type="button"
                 className={"btn btn-outline-light"}
               >
-                {useTranslator(currentLanguage.name, "Pause Timer")}
+                {translator(currentLanguage.name, "Pause Timer")}
               </button>
             )}
           </div>
@@ -180,7 +179,7 @@ export const MyTimer = ({ expiryTimestamp, playAlarm }) => {
           type="button"
           className={"btn btn-outline-light"}
         >
-          {useTranslator(currentLanguage.name, "Restart Timer")}
+          {translator(currentLanguage.name, "Restart Timer")}
         </button>
         <ButtonModal />
       </div>

@@ -1,9 +1,10 @@
 // Third-Party & Ecosystem Imports
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 // Architecture & Global State Imports
-import { useTranslator } from "../../../translator/translator";
-import { useCurrentLanguage } from "../../../../context/context";
+import { translator } from "../../../translator/translator";
+import { selectCurrentLanguage } from "../../../../store/slices/Languages/LanguageSlice.js";
 import { BackgroundByType } from "./backgroundByType";
 import {
   NATURE,
@@ -22,29 +23,29 @@ import classes from "./backgrounds.module.css";
 
 export const Backgrounds = () => {
 
-  const [currentLanguage, setCurrentLanguage] = useCurrentLanguage();
+  const currentLanguage = useSelector(selectCurrentLanguage);
 
   useEffect(() => {}, [window.innerWidth]);
   return (
     <>
       <div className={`${classes.bigContainer}`}>
-        <h3>{useTranslator(currentLanguage.name, NATURE)}</h3>
+        <h3>{translator(currentLanguage.name, NATURE)}</h3>
         <BackgroundByType type={NATURE} />
-        <h3>{useTranslator(currentLanguage.name, ANIME)}</h3>
+        <h3>{translator(currentLanguage.name, ANIME)}</h3>
         <BackgroundByType type={ANIME} />
-        <h3>{useTranslator(currentLanguage.name, CAFE)}</h3>
+        <h3>{translator(currentLanguage.name, CAFE)}</h3>
         <BackgroundByType type={CAFE} />
-        <h3>{useTranslator(currentLanguage.name, CLASSICAL)}</h3>
+        <h3>{translator(currentLanguage.name, CLASSICAL)}</h3>
         <BackgroundByType type={CLASSICAL} />
-        <h3>{useTranslator(currentLanguage.name, JAZZ)}</h3>
+        <h3>{translator(currentLanguage.name, JAZZ)}</h3>
         <BackgroundByType type={JAZZ} />
-        <h3>{useTranslator(currentLanguage.name, RUNNING)}</h3>
+        <h3>{translator(currentLanguage.name, RUNNING)}</h3>
         <BackgroundByType type={RUNNING} />
-        <h3>{useTranslator(currentLanguage.name, INDIA)}</h3>
+        <h3>{translator(currentLanguage.name, INDIA)}</h3>
         <BackgroundByType type={INDIA} />
-        <h3>{useTranslator(currentLanguage.name, GRADIENTS)}</h3>
+        <h3>{translator(currentLanguage.name, GRADIENTS)}</h3>
         <BackgroundByType type={GRADIENTS} />
-        <h3>{useTranslator(currentLanguage.name, SOLIDS)}</h3>
+        <h3>{translator(currentLanguage.name, SOLIDS)}</h3>
         <BackgroundByType type={SOLIDS} />
       </div>
     </>

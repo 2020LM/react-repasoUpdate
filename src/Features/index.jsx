@@ -5,9 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Blurhash } from "react-blurhash";
 
 // Architecture & Global State Imports
-import {
-  useSeconds
-} from "../context/context";
+import { selectInitialSeconds } from "../store/slices/Time/TimeSlice.js";
 import {
   selectBackground,
   selectIndexBackgroundImage,
@@ -26,7 +24,8 @@ import DefaultAlternativeImage from "../assets/img/backgrounds/Anime/3V_6_11zon_
 
 // Local Components
 import { MyTimer } from "../components/timer/timer";
-import { AlarmAudioManager } from "../components/audio/AlarmAudioManager";
+import { AlarmAudioManager } from "../components/audio/AlarmAudioManager/AlarmAudioManager.jsx";
+import { BackgroundSoundManager } from "../components/audio/BackgroundSoundManager/BackgroundSoundManager.jsx";
 import { HamburgerMenu } from "../components/bottons/hamburgerMenu";
 import { SideBard } from "../components/sideBar/sideBar";
 
@@ -57,9 +56,8 @@ function Main() {
     dispatch(setBackgroundLoadedAction(value));
   };
 
-  const [seconds, setSeconds] = useSeconds();
+  const seconds = useSelector(selectInitialSeconds);
   const bigContainer = useRef(null);
-  const alarmAudioRef = useRef(null);
   const [currentHash, setCurrentHash] = useState(
     backgroundImages[indexBackgroundImage].hash1
   );
@@ -126,14 +124,12 @@ function Main() {
               <Blurhash width={"100%"} height={"100%"} hash={currentHash} />
             </div>
           }
-          <AlarmAudioManager ref={alarmAudioRef} />
-          <MyTimer
-            expiryTimestamp={newTime(seconds)}
-            playAlarm={() => alarmAudioRef.current?.play()}
-          />
+          <AlarmAudioManager />
+          <BackgroundSoundManager />
+          <MyTimer expiryTimestamp={newTime(seconds)} />
           <aside>
             <HamburgerMenu />
-            <SideBard playAlarm={() => alarmAudioRef.current?.play()} />
+            <SideBard />
           </aside>
         </div>
       </main>

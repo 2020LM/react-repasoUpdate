@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 // Architecture & Global State Imports
 import { setBackground as setBackgroundAction } from "../../../../store/slices/Background/BackgroundSlice.js";
 import { selectBackgroundImagesByType } from "../../../../store/slices/Background/BackgroundSlice.js";
-import { useCurrentLanguage } from "../../../../context/context";
+import { selectCurrentLanguage } from "../../../../store/slices/Languages/LanguageSlice.js";
 
 // Internal Tools & Utilities
 import storage from "../../../../lib/storage";
@@ -28,7 +28,7 @@ export const BackgroundByType = (props) => {
     dispatch(setBackgroundAction(value));
   };
 
-  const [currentLanguage] = useCurrentLanguage();
+  const currentLanguage = useSelector(selectCurrentLanguage);
   const mediumSize = 525;
 
   const setBackgroundAndAlternativeImages = (value, alternativeValue, index) => {
