@@ -5,9 +5,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 // Architecture & Global State Imports
-import { DataProvider } from "./context/context.jsx";
 import { store } from "./store/store.js";
-import Main from "./Features/index.jsx";
+import Main from "./Features/index.js";
 
 // Component Styles
 import "./App.css";
@@ -15,9 +14,7 @@ import "./App.css";
 function App() {
   return (
     <Provider store={store}>
-      <DataProvider>
-        <Main />
-      </DataProvider>
+      <Main />
     </Provider>
   );
 }
