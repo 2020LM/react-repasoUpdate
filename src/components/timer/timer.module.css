@@ -22,6 +22,7 @@
   justify-content: center;
   background-color: transparent;
   margin-left: 2%;
+  gap: 40px;
 }
 
 button {
@@ -65,7 +66,7 @@ button {
 
 @media (max-width: 900px) {
     .timer {
-      font-size: 7rem; /* Ajustar el tamaño de fuente para pantallas pequeñas */
+      font-size: 7rem; /* To fix the size for small screens */
     }
   }
 
@@ -73,6 +74,8 @@ button {
     .main {
      padding-left: 5%;
 }
+
+
   }
 
 @media (max-width: 525px) {
@@ -82,5 +85,6 @@ button {
     }
       .buttons {
         margin-left: 0%;
+        gap: 0px;
       }
   }

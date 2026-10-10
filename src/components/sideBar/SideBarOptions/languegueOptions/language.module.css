@@ -4,6 +4,34 @@
     margin-left: 0;
 }
 
+.languageButton {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    transition: none;
+    cursor: pointer;
+}
+
+.languageButton:hover {
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+}
+
+.languageButton:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
 .check img {
     max-width: 24px;
     max-height: 24px;

@@ -1,0 +1,83 @@
+// Third-Party & Ecosystem Imports
+import React, { useEffect } from "react";
+
+// Architecture & Global State Imports
+
+import { translator } from "../../../translator/translator.js";
+import { useDispatch, useSelector } from "react-redux";
+import { selectLanguages, selectCurrentLanguage } from "../../../../store/slices/Languages/LanguageSlice.js";
+import { setLanguages as setLanguageAction, setCurrentLanguage as setCurrentLanguageAction} from "../../../../store/slices/Languages/LanguageSlice.js";
+
+// Internal Tools & Utilities
+import storage from "../../../../lib/storage.js";
+import cheque from "../../../../assets/img/icons/cheque.webp";
+
+// Component Styles
+import classes from "./language.module.css";
+
+export const LanguagueOptions = () => {
+  const languages = useSelector(selectLanguages);
+  const currentLanguage = useSelector(selectCurrentLanguage);
+  const dispatch = useDispatch();
+
+  const setLanguages = (languages: any) => {
+    dispatch(setLanguageAction(languages));
+  }
+
+  const setCurrentLanguage = (language: any) => {
+    dispatch(setCurrentLanguageAction(language));
+  };
+
+  const setLanguage = (index: number) => {
+    const newLanguage = languages[index];
+
+    setCurrentLanguage(newLanguage);
+    const updatedLanguagues = languages.map((item: any) => ({
+      ...item,
+      selected: item.id === newLanguage.id ? "true" : "false",
+    }));
+
+    setLanguages(updatedLanguagues);
+    storage.set("language", updatedLanguagues[index]);
+  };
+
+  useEffect(() => {
+    const storedLanguageName = storage.get("language");
+    if (storedLanguageName !== undefined && storedLanguageName !== null) {
+      const storedLanguageIndex = languages.findIndex((item: any) => item.name === storedLanguageName);
+      if (storedLanguageIndex !== -1) {
+        setLanguage(storedLanguageIndex);
+      }
+    }
+  }, []);
+
+  return (
+    <>
+      <h3>{translator(currentLanguage.name, "Languages")}</h3>
+      <ul className={`${classes.languages}`}>
+        {languages.map((item: any, index: number) => {
+          return (
+            <li
+              className={`${classes.fixxingItemList}`}
+              key={index}
+            >
+              <button
+                type="button"
+                className={classes.languageButton}
+                aria-label={item.name}
+                onClick={() => setLanguage(index)}
+              >
+                <span>{item.name}</span>
+                {item.id == currentLanguage.id && (
+                  <span className={classes.check}>
+                    <img src={cheque} alt={item.name} />
+                  </span>
+                )}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </>
+  );
+};

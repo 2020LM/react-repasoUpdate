@@ -4,6 +4,35 @@
   margin-right: 3%;
 }
 
+.menuOptionButton {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  transition: none;
+  cursor: pointer;
+}
+
+.menuOptionButton:hover {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+.menuOptionButton:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
 .rigthArrow {
   max-width: 30px;
   max-height: 30px;

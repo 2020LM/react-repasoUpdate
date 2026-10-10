@@ -1,0 +1,58 @@
+:root {
+    --white: white;
+}
+
+
+.buttons {
+    display:flex;
+    flex-direction: row;
+    margin: 20px;
+    background-color: transparent;
+}
+
+
+
+.hamburgerButton {
+    position: fixed;
+    right: 7.5%;
+    top: 7.5%;
+    z-index: 100;
+    width: 25px;
+    height: 25px;
+    margin: 0;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.menuHamburguesa {
+    display: block;
+    width: 25px;
+    height: 25px;
+
+}
+
+img {
+    cursor: pointer;
+}
+
+.colorfont {
+    color: var(--white);
+}
+
+
+@media (max-width: 992px) {
+    .hamburgerButton {
+        right: 12%; 
+    }
+
+  }
+
+  @media (max-width: 525px) {
+        .hamburgerButton {
+        right: 10%; 
+    
+    }
+  }
