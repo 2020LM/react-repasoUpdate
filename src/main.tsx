@@ -4,7 +4,7 @@ import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 
 // Architecture & Global State Imports
-import App from "./App.tsx";
+import App from "./App.js";
 
 // Component Styles
 import "./index.css";

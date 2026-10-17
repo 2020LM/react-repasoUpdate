@@ -1,0 +1,95 @@
+.alarmSound {
+    margin-top: 10%;
+}
+
+.alarmSound li {
+    list-style: none;
+    padding: 0;
+    margin-left: 0;
+}
+
+.alarmOption {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    transition: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+.alarmOption:hover {
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+}
+
+.alarmOption:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+.check img {
+    max-width: 24px;
+    max-height: 24px;
+}
+
+.check {
+    position: absolute;
+    right: 7.5%;
+    transform: translateY(-10%);
+}
+
+.volumenStyle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 3%;
+    margin-right: 3%;
+    transform: translateY(-25%);
+    margin-top: 15%;
+}
+
+.volumenStyle input {
+    width: 70%;
+}
+
+.volumeButton {
+    display: grid;
+    width: 20px;
+    height: 20px;
+    min-width: 0;
+    place-items: center;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    transition: none;
+    cursor: pointer;
+}
+
+.volumeButton:hover {
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+}
+
+.volumeButton:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+.volumenIcon {
+    display: block;
+    max-width: 20px;
+    max-height: 20px;
+}
